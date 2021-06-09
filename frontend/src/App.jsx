@@ -1,5 +1,5 @@
-import Board from './Board'
-import Navbar from './Navbar'
+import Board from './containers/Board'
+import Navbar from './components/Navbar'
 
 function App() {
   return (

@@ -1,4 +1,4 @@
-import Task from './Task'
+import Task from '../components/Task'
 
 function List({title}) {
   return (
