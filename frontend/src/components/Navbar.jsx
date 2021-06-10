@@ -1,9 +1,14 @@
+import { useSelector } from 'react-redux'
+
 function Navbar() {
-  return(
+
+  const boards = useSelector(state => state.boardsReducer.myBoards)
+
+  return (
     <ul>
-      <li>Main Project</li>
-      <li>Other board</li>
-      <li>Other board</li>
+      {
+        boards.map(board => <li key={board.id}>{board.title}</li> )
+      }
     </ul>
   )
 }
