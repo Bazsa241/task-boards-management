@@ -18,40 +18,18 @@ const boardsSlice = createSlice({
   initialState,
   reducers: {
     addTodo: (state, { payload }) => {
-      const board = state.myBoards.find(board => board.id === payload.boardId)
-      board.todo.push(payload.todoItem)
+      const { boardId, todoItem } = payload
+      const board = state.myBoards.find(board => board.id === boardId)
+      board.todo.push(todoItem)
+    },
+    removeTask: (state, { payload }) => {
+      const { boardId, id, category } = payload
+      const board = state.myBoards.find(board => board.id === boardId)
+      board[category] = board[category].filter(task => task.id !== id)
     },
   },
 })
 
 const boardsReducer = boardsSlice.reducer
-export const { addTodo } = boardsSlice.actions
+export const { addTodo, removeTask } = boardsSlice.actions
 export default boardsReducer
-
-/*
-boardsReducer = {
-  myBoards: [
-    {
-      id: 01234,
-      title: 'Board1',
-      todo: [
-        {
-          id: 1111,
-          title: 'task1',
-          description: 'description'
-        }
-      ],
-      inProgress: [],
-      done: [],
-    },
-    {
-      id: 56789
-      title: 'Board2',
-      todo: [],
-      inProgress: [],
-      done: [],
-    },
-  ],
-  sharedBoards: [],
-}
-*/
