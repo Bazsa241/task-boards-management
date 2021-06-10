@@ -1,30 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const myBoardsInit = [
-  {
-    id: 11111,
-    title: 'My First Board',
-    todo: [],
-    inProgress: [],
-    done: [],
-  },
-]
+const initialState = {
+  myBoards: [
+    {
+      id: 2387645,
+      title: 'My First Board',
+      todo: [],
+      inProgress: [],
+      done: [],
+    },
+  ],
+  sharedBoards: [],
+}
 
-const myBoardsSlice = createSlice({
-  name: 'myBoards',
-  initialState: myBoardsInit,
+const boardsSlice = createSlice({
+  name: 'boards',
+  initialState,
   reducers: {
-    addTodo: (state, payload) => {
-      const board = state.find(board => board.id === payload.id)
+    addTodo: (state, { payload }) => {
+      const board = state.myBoards.find(board => board.id === payload.boardId)
       board.todo.push(payload.todoItem)
-    } 
+    },
   },
 })
 
-
-const myBoardsReducer = myBoardsSlice.reducer
-export const { addTodo } = myBoardsSlice.actions
-export default myBoardsReducer
+const boardsReducer = boardsSlice.reducer
+export const { addTodo } = boardsSlice.actions
+export default boardsReducer
 
 /*
 boardsReducer = {

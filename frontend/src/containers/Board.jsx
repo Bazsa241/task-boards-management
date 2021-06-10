@@ -1,12 +1,16 @@
 import List from './List'
 
-function Board({title}) {
+function Board({title, todo, id}) {
+
+
+
   return (
     <div>
-      <h2>{title} Board</h2>
-      <List title='TODO' />
-      <List title='In Progress' />
-      <List title='DONE' />
+      <h2>{title}</h2>
+
+      <List title='TODO' todoList={todo} boardId={id} />
+      {/* <List title='In Progress' />
+      <List title='DONE' /> */}
     </div>
   )
 }
