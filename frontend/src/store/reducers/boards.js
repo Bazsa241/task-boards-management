@@ -27,9 +27,15 @@ const boardsSlice = createSlice({
       const board = state.myBoards.find(board => board.id === boardId)
       board[category] = board[category].filter(task => task.id !== id)
     },
+    modifyTask: (state, { payload }) => {
+      const { boardId, category, modifiedTask } = payload
+      const board = state.myBoards.find(board => board.id === boardId)
+      const otherTasks = board[category].filter(task => task.id !== modifiedTask.id)
+      board[category] = [ ...otherTasks, modifiedTask ]
+    } 
   },
 })
 
 const boardsReducer = boardsSlice.reducer
-export const { addTodo, removeTask } = boardsSlice.actions
+export const { addTodo, removeTask, modifyTask } = boardsSlice.actions
 export default boardsReducer

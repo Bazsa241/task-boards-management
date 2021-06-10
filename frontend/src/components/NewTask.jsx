@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addTodo } from '../store/reducers/boards'
+import changeHandler from '../utils/changeHandler'
 
 function NewTask({ boardId }) {
 
@@ -10,10 +11,7 @@ function NewTask({ boardId }) {
     description: '',
   })
 
-  const handleOnChange = event => {
-    const { name, value } = event.target
-    setNewItem({ ...newItem, [name]: value })
-  }
+  const handleOnChange = changeHandler(newItem, setNewItem)
 
   const handleSubmit = () => {
     const todoItem = {
