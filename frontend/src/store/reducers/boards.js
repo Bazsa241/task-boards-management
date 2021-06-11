@@ -30,8 +30,8 @@ const boardsSlice = createSlice({
     modifyTask: (state, { payload }) => {
       const { boardId, category, modifiedTask } = payload
       const board = state.myBoards.find(board => board.id === boardId)
-      const otherTasks = board[category].filter(task => task.id !== modifiedTask.id)
-      board[category] = [ ...otherTasks, modifiedTask ]
+      const taskIndex = board[category].findIndex(task => task.id === modifiedTask.id)
+      board[category][taskIndex] = modifiedTask
     } 
   },
 })
