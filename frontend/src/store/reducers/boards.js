@@ -9,8 +9,16 @@ const initialState = {
       inProgress: [],
       done: [],
     },
+    {
+      id: 1287635,
+      title: 'My Second Board',
+      todo: [],
+      inProgress: [],
+      done: [],
+    },
   ],
   sharedBoards: [],
+  activeBoardId: null
 }
 
 const boardsSlice = createSlice({
@@ -35,9 +43,18 @@ const boardsSlice = createSlice({
       )
       board[category][taskIndex] = modifiedTask
     },
+    changeBoard: (state, { payload }) => {
+      state.activeBoardId = payload
+    }
   },
 })
 
 const boardsReducer = boardsSlice.reducer
-export const { addTodo, removeTask, modifyTask } = boardsSlice.actions
 export default boardsReducer
+
+export const {
+  addTodo,
+  removeTask,
+  modifyTask,
+  changeBoard,
+} = boardsSlice.actions
