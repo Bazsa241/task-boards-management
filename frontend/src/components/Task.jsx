@@ -18,7 +18,8 @@ function Task({ title, description, id, category, boardId }) {
     dispatch(removeTask({category, id, boardId}))
   }
 
-  const handleModify = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault()
     dispatch(modifyTask({
       category,
       boardId,
@@ -36,7 +37,8 @@ function Task({ title, description, id, category, boardId }) {
   return (
     <div>
       {
-        isEdit ? <>
+        isEdit
+        ? <form onSubmit={handleSubmit}>
           <input
             type="text"
             name='title'
@@ -49,17 +51,14 @@ function Task({ title, description, id, category, boardId }) {
             value={task.description}
             onChange={handleOnChange}
           />
-        </> : <>
+          <button>ok</button>
+        </form> : <>
           <h6>{title}</h6>
           <p>{description}</p>
+          <button onClick={handleDelete}>delete</button>
+          <button onClick={showEdit}>edit</button>
         </>
-      }
-      <button onClick={handleDelete}>delete</button>
-      {
-        isEdit ? <button onClick={handleModify}>ok</button>
-               : <button onClick={showEdit}>edit</button>  
-      }
-      
+      }      
     </div>
   )
 }

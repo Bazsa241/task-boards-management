@@ -10,10 +10,12 @@ function NewTask({ boardId }) {
     title: '',
     description: '',
   })
+  
 
   const handleOnChange = changeHandler(newItem, setNewItem)
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault()
     const todoItem = {
       id: Date.now(),
       title: newItem.title,
@@ -24,7 +26,7 @@ function NewTask({ boardId }) {
   }
 
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder='Title'
@@ -39,8 +41,8 @@ function NewTask({ boardId }) {
         value={newItem.description}
         onChange={handleOnChange}
       />
-      <button onClick={handleSubmit}>+</button>
-    </div>
+      <button type='submit'>+</button>
+    </form>
   )
 }
 
