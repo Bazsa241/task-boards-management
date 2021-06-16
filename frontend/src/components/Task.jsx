@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux'
-import { removeTask, modifyTask } from '../store/reducers/boards'
+import { removeTask } from '../store/reducers/boards'
 import { useState } from 'react'
-import changeHandler from '../utils/changeHandler'
 import NewTask from './NewTask'
 
 

@@ -13,7 +13,7 @@ function NewTask({ boardId, category, oldTask, setHide }) {
   
 
   const handleOnChange = changeHandler(newItem, setNewItem)
-  const handleModal = () => {
+  const hideModal = () => {
     setHide(prevState => !prevState)
   }
 
@@ -29,7 +29,7 @@ function NewTask({ boardId, category, oldTask, setHide }) {
       ? modifyTask({ boardId, task, category })
       : addTask({ boardId, task, category })
     )
-    handleModal()
+    hideModal()
   }
 
   return (
@@ -66,7 +66,7 @@ function NewTask({ boardId, category, oldTask, setHide }) {
         </button>
         <button
           className='NewTask__form__button'
-          onClick={handleModal}
+          onClick={hideModal}
         >
           Cancel
         </button>
