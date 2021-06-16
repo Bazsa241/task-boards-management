@@ -5,12 +5,11 @@
   &__heading {
     display: flex;
     justify-content: space-between;
-    @include head-spacing;
+    margin-bottom: 1rem;
   }
 
 
   &__lists {
-    @include list-spacing;
     display: flex;
     justify-content: space-between;
   }

@@ -8,7 +8,7 @@ const initialState = {
       todo: [
         {
           id: 7812635,
-          title: "task1",
+          title: "Task1",
           description: "Lorem ipsum dolor sit amet consectetur"
         },
       ],

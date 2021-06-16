@@ -1,13 +1,14 @@
 @import './mixins.scss';
+@import './variables.scss';
 
 .Navbar {
   background: #00111199;
-  padding: 2rem;
+  padding: $window-padding;
   border-radius: 5px 0 0 5px;
   width: 30%;
 
   &__heading {
-    @include list-heading;
+    @include title-button;
     
     button {
       @include new-item-button;
@@ -22,7 +23,7 @@
 
     li {
       button {
-        @include list-spacing;
+        padding: .5rem 1rem; 
         background: none;
         border: none;
         border-radius: 5px;

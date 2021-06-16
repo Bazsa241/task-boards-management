@@ -1,16 +1,56 @@
 @import './mixins.scss';
+@import './variables.scss';
 
 .Task {
-  // background: #32cd3255;
+  padding: 1rem;
+  // background: #ff000033;
   background: #00ff0033;
-  // background: #ff0000;
+  // background: #0000ff33;
+  // background: #ffff0033;
+  // background: #00ffff33;
+  // background: #ff00ff33;
+  border-radius: 5px;
 
+  &__heading {
+    margin-bottom: $head-margin;
+    h6 {
+      font-size: 1rem;
+    }
+  }
 
   &__body {
+
+    p {
+      margin-bottom: $head-margin;
+    }
+
     &__actions {
       display: flex;
       justify-content: flex-end;
       gap: 5px;
+
+      button {
+        background: #00000066;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-weight: 700;
+        padding: .1rem .5rem;
+
+        &:hover {
+          // background: #dddddd88;
+          background: #00000044;
+        }
+      }
+
+      .delete {
+        color: red;
+      }
+
+      .edit {
+        color: yellow;
+      }
     }
   }
 }

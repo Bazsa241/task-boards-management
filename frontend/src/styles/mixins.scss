@@ -1,17 +1,11 @@
-@mixin list-spacing {
-  padding: .5rem 1rem;  
-}
+@import './variables.scss';
 
-@mixin head-spacing {
-  // @include list-spacing;
-  margin-bottom: 1rem;
-}
 
-@mixin list-heading {
+@mixin title-button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  @include head-spacing;
+  margin-bottom: $head-margin;
 }
 
 @mixin new-item-button {
