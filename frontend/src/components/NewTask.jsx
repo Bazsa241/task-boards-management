@@ -2,12 +2,8 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addTask, modifyTask } from '../store/reducers/boards'
 import changeHandler from '../utils/changeHandler'
-import styled from 'styled-components'
+import StyledSmall from '../styles/StyledSmall'
 
-const Small = styled.small`
-  color: red;
-  visibility: ${({hide}) => hide ? 'visible' : 'hidden'};
-`
 
 function NewTask({ boardId, category, oldTask, setHide }) {
 
@@ -17,6 +13,7 @@ function NewTask({ boardId, category, oldTask, setHide }) {
     description: '',
   })
   const [itemError, setItemError] = useState({
+    // true if has error
     title: false,
     description: false,
   })
@@ -66,7 +63,7 @@ function NewTask({ boardId, category, oldTask, setHide }) {
             value={newItem.title}
             onChange={handleOnChange}
           />
-          <Small hide={itemError.title}>Required!</Small>
+          <StyledSmall hide={itemError.title}>Required!</StyledSmall>
         </div>
 
         <div className="NewTask__form__input">
@@ -77,7 +74,7 @@ function NewTask({ boardId, category, oldTask, setHide }) {
             value={newItem.description}
             onChange={handleOnChange}
           />
-          <Small hide={itemError.description}>Required!</Small>
+          <StyledSmall hide={itemError.description}>Required!</StyledSmall>
         </div>
 
         <button
