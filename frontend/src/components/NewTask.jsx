@@ -2,6 +2,12 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addTask, modifyTask } from '../store/reducers/boards'
 import changeHandler from '../utils/changeHandler'
+import styled from 'styled-components'
+
+const Small = styled.small`
+  color: red;
+  visibility: ${({hide}) => hide ? 'visible' : 'hidden'};
+`
 
 function NewTask({ boardId, category, oldTask, setHide }) {
 
@@ -10,26 +16,42 @@ function NewTask({ boardId, category, oldTask, setHide }) {
     title: '',
     description: '',
   })
-  
+  const [itemError, setItemError] = useState({
+    title: false,
+    description: false,
+  })
 
   const handleOnChange = changeHandler(newItem, setNewItem)
+
+  const validation = () => {
+    const title = newItem.title.trim() ? false : true
+    const description = newItem.description.trim() ? false : true 
+    setItemError({
+      title,
+      description,
+    })
+    return !title && !description
+  }
+
   const hideModal = () => {
     setHide(prevState => !prevState)
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    const task = {
-      id: newItem.id || Date.now(),
-      title: newItem.title,
-      description: newItem.description,
+    if(validation()) {
+      const task = {
+        id: newItem.id || Date.now(),
+        title: newItem.title,
+        description: newItem.description,
+      }
+      dispatch(
+        oldTask
+        ? modifyTask({ boardId, task, category })
+        : addTask({ boardId, task, category })
+      )
+      hideModal()
     }
-    dispatch(
-      oldTask
-      ? modifyTask({ boardId, task, category })
-      : addTask({ boardId, task, category })
-    )
-    hideModal()
   }
 
   return (
@@ -44,7 +66,7 @@ function NewTask({ boardId, category, oldTask, setHide }) {
             value={newItem.title}
             onChange={handleOnChange}
           />
-          <small>Required!</small>
+          <Small hide={itemError.title}>Required!</Small>
         </div>
 
         <div className="NewTask__form__input">
@@ -55,7 +77,7 @@ function NewTask({ boardId, category, oldTask, setHide }) {
             value={newItem.description}
             onChange={handleOnChange}
           />
-          <small>Required!</small>
+          <Small hide={itemError.description}>Required!</Small>
         </div>
 
         <button
