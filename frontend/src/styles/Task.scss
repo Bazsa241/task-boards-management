@@ -1,0 +1,16 @@
+@import './mixins.scss';
+
+.Task {
+  // background: #32cd3255;
+  background: #00ff0033;
+  // background: #ff0000;
+
+
+  &__body {
+    &__actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 5px;
+    }
+  }
+}

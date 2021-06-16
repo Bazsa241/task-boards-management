@@ -1,0 +1,40 @@
+@mixin list-spacing {
+  padding: .5rem 1rem;  
+}
+
+@mixin head-spacing {
+  // @include list-spacing;
+  margin-bottom: 1rem;
+}
+
+@mixin list-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @include head-spacing;
+}
+
+@mixin new-item-button {
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  color: limegreen;
+  cursor: pointer;
+  font-size: 20px;
+  padding: .1rem .4rem;
+
+  &:hover {
+    background: #00000066;
+  }
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

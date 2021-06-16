@@ -5,7 +5,13 @@ const initialState = {
     {
       id: 2387645,
       title: 'My First Board',
-      todo: [],
+      todo: [
+        {
+          id: 7812635,
+          title: "task1",
+          description: "Lorem ipsum dolor sit amet consectetur"
+        },
+      ],
       inProgress: [],
       done: [],
     },
@@ -18,17 +24,17 @@ const initialState = {
     },
   ],
   sharedBoards: [],
-  activeBoardId: null
+  activeBoardId: 2387645
 }
 
 const boardsSlice = createSlice({
   name: 'boards',
   initialState,
   reducers: {
-    addTodo: (state, { payload }) => {
-      const { boardId, todoItem } = payload
+    addTask: (state, { payload }) => {
+      const { boardId, task, category } = payload
       const board = state.myBoards.find(board => board.id === boardId)
-      board.todo.push(todoItem)
+      board[category].push(task)
     },
     removeTask: (state, { payload }) => {
       const { boardId, id, category } = payload
@@ -36,12 +42,12 @@ const boardsSlice = createSlice({
       board[category] = board[category].filter(task => task.id !== id)
     },
     modifyTask: (state, { payload }) => {
-      const { boardId, category, modifiedTask } = payload
+      const { boardId, category, task } = payload
       const board = state.myBoards.find(board => board.id === boardId)
-      const taskIndex = board[category].findIndex(task =>
-        task.id === modifiedTask.id
+      const taskIndex = board[category].findIndex(t =>
+        t.id === task.id
       )
-      board[category][taskIndex] = modifiedTask
+      board[category][taskIndex] = task
     },
     changeBoard: (state, { payload }) => {
       state.activeBoardId = payload
@@ -53,7 +59,7 @@ const boardsReducer = boardsSlice.reducer
 export default boardsReducer
 
 export const {
-  addTodo,
+  addTask,
   removeTask,
   modifyTask,
   changeBoard,

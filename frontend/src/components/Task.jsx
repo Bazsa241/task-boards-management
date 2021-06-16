@@ -2,63 +2,37 @@ import { useDispatch } from 'react-redux'
 import { removeTask, modifyTask } from '../store/reducers/boards'
 import { useState } from 'react'
 import changeHandler from '../utils/changeHandler'
+import NewTask from './NewTask'
 
 
-function Task({ title, description, id, category, boardId }) {
+function Task({ task, category, boardId }) {
 
   const dispatch = useDispatch()
   const [isEdit, setIsEdit] = useState(false)
-  const [task, setTask] = useState({
-    id,
-    title,
-    description
-  })
 
   const handleDelete = () => {
-    dispatch(removeTask({category, id, boardId}))
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    dispatch(modifyTask({
-      category,
-      boardId,
-      modifiedTask: task
-    }))
-    setIsEdit(false)
+    dispatch(removeTask({category, id: task.id, boardId}))
   }
 
   const showEdit = () => {
     setIsEdit(true)
   }
 
-  const handleOnChange = changeHandler(task, setTask)
-
   return (
-    <div>
+    <div className='Task'>
       {
-        isEdit
-        ? <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name='title'
-            value={task.title}
-            onChange={handleOnChange}
-          />
-          <input
-            type="text"
-            name='description'
-            value={task.description}
-            onChange={handleOnChange}
-          />
-          <button>ok</button>
-        </form> : <>
-          <h6>{title}</h6>
-          <p>{description}</p>
-          <button onClick={handleDelete}>delete</button>
-          <button onClick={showEdit}>edit</button>
-        </>
-      }      
+        isEdit && <NewTask boardId={boardId} oldTask={task} category={category} setHide={setIsEdit}/>
+      }
+        <div className="Task__heading">
+          <h6>{task.title}</h6>
+        </div>
+        <div className="Task__body">
+          <p>{task.description}</p>
+          <div className="Task__body__actions">
+            <button className='delete' onClick={handleDelete}>X</button>
+            <button className='edit' onClick={showEdit}>edit</button>
+          </div>
+        </div>
     </div>
   )
 }

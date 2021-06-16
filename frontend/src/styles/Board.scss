@@ -1,0 +1,17 @@
+@import './mixins.scss';
+
+.Board {
+
+  &__heading {
+    display: flex;
+    justify-content: space-between;
+    @include head-spacing;
+  }
+
+
+  &__lists {
+    @include list-spacing;
+    display: flex;
+    justify-content: space-between;
+  }
+}

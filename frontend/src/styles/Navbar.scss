@@ -1,0 +1,38 @@
+@import './mixins.scss';
+
+.Navbar {
+  background: #00111199;
+  padding: 2rem;
+  border-radius: 5px 0 0 5px;
+  width: 30%;
+
+  &__heading {
+    @include list-heading;
+    
+    button {
+      @include new-item-button;
+    }
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none; 
+    gap: 2px;
+
+    li {
+      button {
+        @include list-spacing;
+        background: none;
+        border: none;
+        border-radius: 5px;
+        color: #dddddd;
+        cursor: pointer;
+
+        &:hover {
+          background: #001111aa;
+        }
+      }
+    }
+  }
+}

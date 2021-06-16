@@ -1,0 +1,19 @@
+@import './mixins.scss';
+
+.List {
+  width: 32%;
+
+  &__heading {
+    @include list-heading;
+
+    button {
+      @include new-item-button;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}

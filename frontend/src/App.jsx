@@ -1,7 +1,7 @@
 import Board from './containers/Board'
 import Navbar from './components/Navbar'
 import { useSelector } from 'react-redux'
-import Wrapper from './styles/Wrapper'
+
 
 function App() {
 
@@ -10,14 +10,16 @@ function App() {
   const board = boards.find(board => board.id === activeId)
 
   return (
-    <Wrapper>
+    <div className='App'>
       <Navbar />
-        <h1>Task Boards Management</h1>
+      <main>
+        {/* <h1>Task Boards Management</h1> */}
           {
             activeId &&
             <Board key={board.id} {...board} />       
           }
-    </Wrapper>
+      </main>
+    </div>
   );
 }
 

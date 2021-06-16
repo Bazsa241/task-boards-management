@@ -1,0 +1,15 @@
+.App {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2%;
+  min-height: 100vh;
+  position: relative;
+
+  main {
+    padding: 2rem;
+    border-radius: 0 5px 5px 0;
+    background: #00111188;
+    width: 100%;
+  }
+}

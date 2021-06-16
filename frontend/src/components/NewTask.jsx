@@ -1,48 +1,78 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addTodo } from '../store/reducers/boards'
+import { addTask, modifyTask } from '../store/reducers/boards'
 import changeHandler from '../utils/changeHandler'
 
-function NewTask({ boardId }) {
+function NewTask({ boardId, category, oldTask, setHide }) {
 
   const dispatch = useDispatch()
-  const [newItem, setNewItem] = useState({
+  const [newItem, setNewItem] = useState(oldTask || {
     title: '',
     description: '',
   })
   
 
   const handleOnChange = changeHandler(newItem, setNewItem)
+  const handleModal = () => {
+    setHide(prevState => !prevState)
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    const todoItem = {
-      id: Date.now(),
+    const task = {
+      id: newItem.id || Date.now(),
       title: newItem.title,
       description: newItem.description,
     }
-    dispatch(addTodo({ boardId, todoItem }))
-    setNewItem({ title: '', description: '' })
+    dispatch(
+      oldTask
+      ? modifyTask({ boardId, task, category })
+      : addTask({ boardId, task, category })
+    )
+    handleModal()
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder='Title'
-        name='title'
-        value={newItem.title}
-        onChange={handleOnChange}
-      />
-      <input
-        type="text"
-        placeholder='Description'
-        name='description'
-        value={newItem.description}
-        onChange={handleOnChange}
-      />
-      <button type='submit'>+</button>
-    </form>
+    <div className="NewTask">
+      <form className='NewTask__form' onSubmit={handleSubmit}>
+
+        <div className="NewTask__form__input">
+          <label>Title</label>
+          <input
+            type="text"
+            name='title'
+            value={newItem.title}
+            onChange={handleOnChange}
+          />
+          <small>Required!</small>
+        </div>
+
+        <div className="NewTask__form__input">
+          <label>Description</label>
+          <input
+            type="text"
+            name='description'
+            value={newItem.description}
+            onChange={handleOnChange}
+          />
+          <small>Required!</small>
+        </div>
+
+        <button
+          className='NewTask__form__button'
+          type='submit'
+        >
+          Submit
+        </button>
+        <button
+          className='NewTask__form__button'
+          onClick={handleModal}
+        >
+          Cancel
+        </button>
+
+      </form>
+    </div>
   )
 }
 

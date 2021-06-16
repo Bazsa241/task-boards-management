@@ -1,19 +1,23 @@
 import { useSelector,  } from 'react-redux'
 import BoardTab from './BoardTab'
-import Nav from '../styles/Nav'
+
 
 function Navbar() {
 
   const boards = useSelector(state => state.boardsReducer.myBoards)
 
   return (
-    <Nav>
+    <aside className='Navbar'>
+      <div className='Navbar__heading'>
+        <h3>Boards</h3>
+        <button>+</button>
+      </div>
       <ul>
         {
           boards.map(board => <BoardTab key={board.id} {...board} />)
         }
       </ul>
-    </Nav>
+    </aside>
   )
 }
 
