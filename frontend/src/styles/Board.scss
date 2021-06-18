@@ -6,6 +6,45 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
+
+    &__actions {
+      display: flex;
+      gap: 5px;
+
+      button {
+        @include action-buttons;
+      }
+    }
+
+    form {
+      display: flex;
+      gap: 5px;
+
+      input {
+        background: none;
+        border: 0;
+        color: #dddddd;
+        font-family: Roboto, sans-serif;
+        font-size: 1.17em;
+        font-weight: bold;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      button {
+        @include action-buttons;
+      }
+    }
+
+    .delete {
+      color: red;
+    }
+
+    .edit {
+      color: yellow;
+    }
   }
 
 

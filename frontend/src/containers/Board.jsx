@@ -1,11 +1,21 @@
+import { useState } from 'react'
 import List from './List'
+import BoardHead from '../components/BoardHead'
+import BoardEdit from '../components/BoardEdit'
 
 
 function Board({title, todo, inProgress, done, id}) {
+
+  const [isEdit, setIsEdit] = useState(false)
+
   return (
     <div className='Board'>
       <div className='Board__heading'>
-        <h3>{title}</h3>
+        {
+          isEdit
+          ? <BoardEdit title={title} id={id} setIsEdit={setIsEdit}/>
+          : <BoardHead title={title} id={id} setIsEdit={setIsEdit}/>
+        }      
       </div>
       <div className='Board__lists'>
         <List

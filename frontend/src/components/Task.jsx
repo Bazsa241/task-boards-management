@@ -28,8 +28,8 @@ function Task({ task, category, boardId }) {
         <div className="Task__body">
           <p>{task.description}</p>
           <div className="Task__body__actions">
-            <button className='delete' onClick={handleDelete}>X</button>
             <button className='edit' onClick={showEdit}>edit</button>
+            <button className='delete' onClick={handleDelete}>X</button>
           </div>
         </div>
     </div>
