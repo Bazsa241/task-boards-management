@@ -27,20 +27,31 @@ const initialState = {
   activeBoardId: 2387645
 }
 
+const initialBoard = {
+  id: null,
+  title: 'Untitled Board',
+  todo: [],
+  inProgress: [],
+  done: [],
+}
+
 const boardsSlice = createSlice({
   name: 'boards',
   initialState,
   reducers: {
+
     addTask: (state, { payload }) => {
       const { boardId, task, category } = payload
       const board = state.myBoards.find(board => board.id === boardId)
       board[category].push(task)
     },
+
     removeTask: (state, { payload }) => {
       const { boardId, id, category } = payload
       const board = state.myBoards.find(board => board.id === boardId)
       board[category] = board[category].filter(task => task.id !== id)
     },
+
     modifyTask: (state, { payload }) => {
       const { boardId, category, task } = payload
       const board = state.myBoards.find(board => board.id === boardId)
@@ -49,9 +60,20 @@ const boardsSlice = createSlice({
       )
       board[category][taskIndex] = task
     },
+
     changeBoard: (state, { payload }) => {
       state.activeBoardId = payload
-    }
+    },
+
+    addBoard: (state) => {
+      const id = Date.now()
+      state.myBoards.push({
+        ...initialBoard,
+        id
+      })
+      state.activeBoardId = id
+    },
+
   },
 })
 
@@ -63,4 +85,5 @@ export const {
   removeTask,
   modifyTask,
   changeBoard,
+  addBoard,
 } = boardsSlice.actions
