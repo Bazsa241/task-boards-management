@@ -74,6 +74,10 @@ const boardsSlice = createSlice({
       state.activeBoardId = id
     },
 
+    removeBoard: (state, { payload }) => {
+      state.myBoards = state.myBoards.filter(board => board.id !== payload)
+    },
+
   },
 })
 
@@ -86,4 +90,5 @@ export const {
   modifyTask,
   changeBoard,
   addBoard,
+  removeBoard,
 } = boardsSlice.actions

@@ -1,11 +1,18 @@
+import { removeBoard, changeBoard } from '../store/reducers/boards'
+import { useDispatch } from 'react-redux'
+
+
 const BoardHead = ({title, id, setIsEdit}) => {
+  
+  const dispatch = useDispatch()
 
   const handleEdit = () => {
     setIsEdit(prevState => !prevState)
   }
 
   const handleDelete = () => {
-
+    dispatch(removeBoard(id))
+    dispatch(changeBoard(null))
   }
 
   return (

@@ -60,6 +60,7 @@ function NewTask({ boardId, category, oldTask, setHide }) {
           <input
             type="text"
             name='title'
+            autoFocus
             value={newItem.title}
             onChange={handleOnChange}
           />
