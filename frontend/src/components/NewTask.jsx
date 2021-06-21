@@ -1,46 +1,45 @@
-import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addTask, modifyTask } from '../store/reducers/boards'
-import changeHandler from '../utils/changeHandler'
 import StyledSmall from '../styles/StyledSmall'
+import { useFormik } from 'formik'
 
 
 function NewTask({ boardId, category, oldTask, setHide }) {
 
   const dispatch = useDispatch()
-  const [newItem, setNewItem] = useState(oldTask || {
+
+  const initialValues = oldTask ? oldTask : {
     title: '',
-    description: '',
-  })
-  const [itemError, setItemError] = useState({
-    // true if has error
-    title: false,
-    description: false,
-  })
-
-  const handleOnChange = changeHandler(newItem, setNewItem)
-
-  const validation = () => {
-    const title = newItem.title.trim() ? false : true
-    const description = newItem.description.trim() ? false : true 
-    setItemError({
-      title,
-      description,
-    })
-    return !title && !description
+    description: ''
   }
 
   const hideModal = () => {
     setHide(prevState => !prevState)
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    if(validation()) {
+  const formik = useFormik({
+    
+    initialValues,
+
+    validate: values => {
+      const error = {}
+
+      if(!values.title.trim())
+        error.title = 'Required!'
+      else if(values.title.length < 3)
+        error.title = 'Must be at least 3 characters long'
+      if(!values.description.trim())
+        error.description = 'Required!'
+      else if(values.description.length < 3)
+        error.description = 'Must be at least 3 characters long'
+
+      return error
+    },
+    
+    onSubmit: values => {
       const task = {
-        id: newItem.id || Date.now(),
-        title: newItem.title,
-        description: newItem.description,
+        ...values,
+        id: values.id || Date.now(),
       }
       dispatch(
         oldTask
@@ -48,12 +47,13 @@ function NewTask({ boardId, category, oldTask, setHide }) {
         : addTask({ boardId, task, category })
       )
       hideModal()
-    }
-  }
+    },
+
+  })
 
   return (
     <div className="NewTask">
-      <form className='NewTask__form' onSubmit={handleSubmit}>
+      <form className='NewTask__form' onSubmit={formik.handleSubmit}>
 
         <div className="NewTask__input-container">
           <label className='NewTask__input-title'>Title</label>
@@ -62,10 +62,15 @@ function NewTask({ boardId, category, oldTask, setHide }) {
             type="text"
             name='title'
             autoFocus
-            value={newItem.title}
-            onChange={handleOnChange}
+            value={formik.values.title}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
-          <StyledSmall hide={itemError.title}>Required!</StyledSmall>
+          <StyledSmall
+            hide={formik.errors.description && formik.touched.title}
+          >
+            {formik.errors.title}
+          </StyledSmall>
         </div>
 
         <div className="NewTask__input-container">
@@ -74,10 +79,15 @@ function NewTask({ boardId, category, oldTask, setHide }) {
             className='NewTask__input-field'
             type="text"
             name='description'
-            value={newItem.description}
-            onChange={handleOnChange}
+            value={formik.values.description}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
-          <StyledSmall hide={itemError.description}>Required!</StyledSmall>
+          <StyledSmall
+            hide={formik.errors.description && formik.touched.description}
+          >
+            {formik.errors.description}
+          </StyledSmall>
         </div>
 
         <button
