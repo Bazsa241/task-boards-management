@@ -75,9 +75,10 @@ function NewTask({ boardId, category, oldTask, setHide }) {
 
         <div className="NewTask__input-container">
           <label className='NewTask__input-title'>Description</label>
-          <input
+          <textarea
             className='NewTask__input-field'
             type="text"
+            rows='4'
             name='description'
             value={formik.values.description}
             onChange={formik.handleChange}
