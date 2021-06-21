@@ -16,7 +16,12 @@ function Navbar() {
     <aside className='Navbar'>
       <div className='Navbar__heading'>
         <h3 className='Navbar__title'>Boards</h3>
-        <button className='btn btn--new-item btn--plus'>+</button>
+        <button
+          className='btn btn--new-item btn--plus'
+          onClick={handleClick}
+        >
+          +
+        </button>
       </div>
       <ul className='Navbar__list'>
         {

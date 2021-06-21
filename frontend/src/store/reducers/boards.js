@@ -78,6 +78,12 @@ const boardsSlice = createSlice({
       state.myBoards = state.myBoards.filter(board => board.id !== payload)
     },
 
+    modifyBoard: (state, { payload }) => {
+      const { id, title } = payload
+      const board = state.myBoards.find(board => board.id === id)
+      board.title = title
+    },
+
   },
 })
 
@@ -91,4 +97,5 @@ export const {
   changeBoard,
   addBoard,
   removeBoard,
+  modifyBoard,
 } = boardsSlice.actions
