@@ -8,19 +8,6 @@
   margin-bottom: $head-margin;
 }
 
-@mixin new-item-button {
-  background: none;
-  border: 0;
-  border-radius: 50%;
-  color: limegreen;
-  cursor: pointer;
-  font-size: 20px;
-  padding: .1rem .4rem;
-
-  &:hover {
-    background: #00000066;
-  }
-}
 
 @mixin flex-column {
   display: flex;

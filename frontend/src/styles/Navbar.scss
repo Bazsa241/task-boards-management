@@ -9,31 +9,12 @@
 
   &__heading {
     @include title-button;
-    
-    button {
-      @include new-item-button;
-    }
   }
 
-  ul {
+  &__list {
     display: flex;
     flex-direction: column;
     list-style: none; 
     gap: 2px;
-
-    li {
-      button {
-        padding: .5rem 1rem; 
-        background: none;
-        border: none;
-        border-radius: 5px;
-        color: #dddddd;
-        cursor: pointer;
-
-        &:hover {
-          background: #001111aa;
-        }
-      }
-    }
   }
 }

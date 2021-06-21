@@ -5,7 +5,7 @@ function Board({title, todo, inProgress, done, id}) {
   return (
     <div className='Board'>
       <div className='Board__heading'>
-        <h3>{title}</h3>
+        <h3 className='Board__title'>{title}</h3>
       </div>
       <div className='Board__lists'>
         <List

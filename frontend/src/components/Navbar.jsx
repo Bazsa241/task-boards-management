@@ -9,10 +9,10 @@ function Navbar() {
   return (
     <aside className='Navbar'>
       <div className='Navbar__heading'>
-        <h3>Boards</h3>
-        <button>+</button>
+        <h3 className='Navbar__title'>Boards</h3>
+        <button className='btn btn--new-item btn--plus'>+</button>
       </div>
-      <ul>
+      <ul className='Navbar__list'>
         {
           boards.map(board => <BoardTab key={board.id} {...board} />)
         }

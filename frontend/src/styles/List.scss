@@ -5,10 +5,6 @@
 
   &__heading {
     @include title-button;
-
-    button {
-      @include new-item-button;
-    }
   }
 
   &__body {
