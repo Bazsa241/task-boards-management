@@ -10,8 +10,8 @@
 
   &__main {
     padding: $window-padding;
-    border-radius: 0 5px 5px 0;
-    background: #00111188;
+    border-radius: 0 $border-radius-primary $border-radius-primary 0;
+    background: #001111bb;
     width: 100%;
   }
 }

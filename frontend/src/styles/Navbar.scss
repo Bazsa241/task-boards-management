@@ -2,9 +2,9 @@
 @import './variables.scss';
 
 .Navbar {
-  background: #00111199;
+  background: #001111cc;
   padding: $window-padding;
-  border-radius: 5px 0 0 5px;
+  border-radius: $border-radius-primary 0 0 $border-radius-primary;
   width: 30%;
 
   &__heading {

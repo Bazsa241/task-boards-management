@@ -10,7 +10,7 @@
   left: 0;
   right: 0;
   margin: 2%;
-  border-radius: 5px;
+  border-radius: $border-radius-primary;
 
   &__form {
     @include flex-column;
@@ -30,7 +30,7 @@
     &-field {
       background: #ffffffaa;
       border: 0;
-      border-radius: 5px;
+      border-radius: $border-radius-primary;
       font-size: 1.2rem;
       padding: .5rem 1rem;
     }

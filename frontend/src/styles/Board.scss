@@ -15,14 +15,24 @@
   }
 
   &__edit {
-    &-form{
+    &-form {
+      width: 100%;
       display: flex;
+      justify-content: space-between;
+      gap: 5px;
+    }
+
+    &-container {
+      display: flex;
+      align-items: center;
       gap: 5px;
     }
 
     &-input {
-      background: none;
+      background: #00111188;
       border: 0;
+      border-radius: $border-radius-primary;
+      padding: .3rem .5rem;
       color: #dddddd;
       font-family: Roboto, sans-serif;
       font-size: 1.17em;
@@ -32,6 +42,12 @@
         outline: none;
       }
     }
+
+    &-error {
+      font-weight: 700;
+      color: red;
+    }
+
   }
 
   &__lists {
