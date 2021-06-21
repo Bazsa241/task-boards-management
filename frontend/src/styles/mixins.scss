@@ -8,33 +8,20 @@
   margin-bottom: $head-margin;
 }
 
-@mixin new-item-button {
-  background: none;
-  border: 0;
-  border-radius: 50%;
-  color: limegreen;
-  cursor: pointer;
-  font-size: 20px;
-  padding: .1rem .4rem;
 
-  &:hover {
-    background: #00000066;
-  }
-}
+// @mixin action-buttons {
+//   background: #00000066;
+//   border: 0;
+//   border-radius: 5px;
+//   cursor: pointer;
+//   font-size: 1.1rem;
+//   font-weight: 700;
+//   padding: .1rem .5rem;
 
-@mixin action-buttons {
-  background: #00000066;
-  border: 0;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  font-weight: 700;
-  padding: .1rem .5rem;
-
-  &:hover {
-    background: #00000044;
-  }
-}
+//   &:hover {
+//     background: #00000044;
+//   }
+// }
 
 @mixin flex-column {
   display: flex;

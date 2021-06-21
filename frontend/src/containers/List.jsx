@@ -22,8 +22,11 @@ function List({title, taskList, boardId, category}) {
         />
       }
       <div className='List__heading'>
-        <h4>{title}</h4>
-        <button onClick={handleModal}>
+        <h4 className='List__title'>{title}</h4>
+        <button
+          className='btn btn--new-item btn--plus'
+          onClick={handleModal}
+        >
           +
         </button>
       </div>

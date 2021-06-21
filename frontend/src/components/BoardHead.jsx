@@ -17,10 +17,10 @@ const BoardHead = ({title, id, setIsEdit}) => {
 
   return (
     <>
-      <h3>{title}</h3>
-      <div className="Board__heading__actions">
-        <button className='edit' onClick={handleEdit}>edit</button>
-        <button className='delete' onClick={handleDelete}>X</button>
+      <h3 className='Board__title'>{title}</h3>
+      <div className="Board__action-list">
+        <button className='btn btn--edit' onClick={handleEdit}>edit</button>
+        <button className='btn btn--delete' onClick={handleDelete}>X</button>
       </div>
     </>
   )

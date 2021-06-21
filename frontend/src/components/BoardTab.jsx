@@ -10,8 +10,11 @@ const BoardTab = ({title, id}) => {
   }
 
   return (
-    <li>
-      <button onClick={handleClick}>
+    <li className='BoardTab'>
+      <button
+        className='btn btn--board'
+        onClick={handleClick}
+      >
         {title}
       </button>
     </li>

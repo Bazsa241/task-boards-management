@@ -6,9 +6,9 @@ const BoardEdit = ({title, id, setIsEdit}) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" value={title} autoFocus/>
-      <button className='edit' type='submit'>ok</button>
+    <form className='Board__edit-form' onSubmit={handleSubmit}>
+      <input className='Board__edit-input' type="text" value={title} autoFocus/>
+      <button className='btn btn--edit' type='submit'>ok</button>
     </form>
   )
 }

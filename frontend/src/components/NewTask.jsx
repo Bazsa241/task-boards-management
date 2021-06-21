@@ -55,9 +55,10 @@ function NewTask({ boardId, category, oldTask, setHide }) {
     <div className="NewTask">
       <form className='NewTask__form' onSubmit={handleSubmit}>
 
-        <div className="NewTask__form__input">
-          <label>Title</label>
+        <div className="NewTask__input-container">
+          <label className='NewTask__input-title'>Title</label>
           <input
+            className='NewTask__input-field'
             type="text"
             name='title'
             autoFocus
@@ -67,9 +68,10 @@ function NewTask({ boardId, category, oldTask, setHide }) {
           <StyledSmall hide={itemError.title}>Required!</StyledSmall>
         </div>
 
-        <div className="NewTask__form__input">
-          <label>Description</label>
+        <div className="NewTask__input-container">
+          <label className='NewTask__input-title'>Description</label>
           <input
+            className='NewTask__input-field'
             type="text"
             name='description'
             value={newItem.description}
@@ -79,13 +81,13 @@ function NewTask({ boardId, category, oldTask, setHide }) {
         </div>
 
         <button
-          className='NewTask__form__button'
+          className='btn NewTask__btn'
           type='submit'
         >
           Submit
         </button>
         <button
-          className='NewTask__form__button'
+          className='btn NewTask__btn'
           onClick={hideModal}
         >
           Cancel

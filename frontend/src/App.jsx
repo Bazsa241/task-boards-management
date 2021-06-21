@@ -12,7 +12,7 @@ function App() {
   return (
     <div className='App'>
       <Navbar />
-      <main>
+      <main className='App__main'>
         {/* <h1>Task Boards Management</h1> */}
           {
             activeId &&

@@ -16,6 +16,7 @@ function Board({title, todo, inProgress, done, id}) {
           ? <BoardEdit title={title} id={id} setIsEdit={setIsEdit}/>
           : <BoardHead title={title} id={id} setIsEdit={setIsEdit}/>
         }      
+        {/* <h3 className='Board__title'>{title}</h3> */}
       </div>
       <div className='Board__lists'>
         <List

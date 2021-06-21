@@ -20,18 +20,34 @@ function Task({ task, category, boardId }) {
   return (
     <div className='Task'>
       {
-        isEdit && <NewTask boardId={boardId} oldTask={task} category={category} setHide={setIsEdit}/>
+        isEdit &&
+          <NewTask
+            boardId={boardId}
+            oldTask={task}
+            category={category}
+            setHide={setIsEdit}
+          />
       }
-        <div className="Task__heading">
-          <h6>{task.title}</h6>
+      <div className="Task__heading">
+        <h6 className="Task__title">{task.title}</h6>
+      </div>
+      <div className="Task__body">
+        <p className="Task__description">{task.description}</p>
+        <div className="Task__action-list">
+          <button
+            className='btn btn--edit'
+            onClick={showEdit}
+          >
+            edit
+          </button>
+          <button
+            className='btn btn--delete'
+            onClick={handleDelete}
+          >
+            X
+          </button>
         </div>
-        <div className="Task__body">
-          <p>{task.description}</p>
-          <div className="Task__body__actions">
-            <button className='edit' onClick={showEdit}>edit</button>
-            <button className='delete' onClick={handleDelete}>X</button>
-          </div>
-        </div>
+      </div>
     </div>
   )
 }

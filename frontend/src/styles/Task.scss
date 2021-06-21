@@ -13,33 +13,19 @@
 
   &__heading {
     margin-bottom: $head-margin;
-    h6 {
-      font-size: 1rem;
-    }
   }
 
-  &__body {
+  &__title {
+    font-size: 1rem;
+  }
 
-    p {
-      margin-bottom: $head-margin;
-    }
+  &__description {
+    margin-bottom: $head-margin;
+  }
 
-    &__actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 5px;
-
-      button {
-        @include action-buttons
-      }
-
-      .delete {
-        color: red;
-      }
-
-      .edit {
-        color: yellow;
-      }
-    }
+  &__action-list {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
   }
 }

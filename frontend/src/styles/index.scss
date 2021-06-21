@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import './global.scss';
 @import './App.scss';
 @import './Board.scss';
 @import './Navbar.scss';
@@ -12,10 +13,10 @@
   padding: 0;
 }
 
-body {
-  font-family: Roboto, sans-serif;
-  background: url('../img/pexels-mohamed-almari-1485894.jpg') center center no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  color: #dddddd;
-}
+// body {
+//   font-family: Roboto, sans-serif;
+//   background: url('../img/pexels-mohamed-almari-1485894.jpg') center center no-repeat;
+//   background-size: cover;
+//   background-attachment: fixed;
+//   color: #dddddd;
+// }
