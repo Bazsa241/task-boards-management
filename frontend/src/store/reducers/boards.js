@@ -2,29 +2,29 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   myBoards: [
-    {
-      id: 2387645,
-      title: 'My First Board',
-      todo: [
-        {
-          id: 7812635,
-          title: "Task1",
-          description: "Lorem ipsum dolor sit amet consectetur"
-        },
-      ],
-      inProgress: [],
-      done: [],
-    },
-    {
-      id: 1287635,
-      title: 'My Second Board',
-      todo: [],
-      inProgress: [],
-      done: [],
-    },
+    // {
+    //   id: 2387645,
+    //   title: 'My First Board',
+    //   todo: [
+    //     {
+    //       id: 7812635,
+    //       title: "Task1",
+    //       description: "Lorem ipsum dolor sit amet consectetur"
+    //     },
+    //   ],
+    //   inProgress: [],
+    //   done: [],
+    // },
+    // {
+    //   id: 1287635,
+    //   title: 'My Second Board',
+    //   todo: [],
+    //   inProgress: [],
+    //   done: [],
+    // },
   ],
   sharedBoards: [],
-  activeBoardId: 2387645
+  activeBoardId: null
 }
 
 const initialBoard = {
@@ -84,6 +84,10 @@ const boardsSlice = createSlice({
       board.title = title
     },
 
+    getBoards: (state, { payload }) => {
+      state.myBoards = payload
+    },
+
   },
 })
 
@@ -98,4 +102,5 @@ export const {
   addBoard,
   removeBoard,
   modifyBoard,
+  getBoards,
 } = boardsSlice.actions
