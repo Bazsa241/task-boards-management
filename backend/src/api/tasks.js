@@ -9,7 +9,7 @@ router.get('/tasks/:boardId/:category/', (req, res) => {
   const { category, boardId } = req.params
   const tasks = boards.find(board => board.id == boardId)[category]  
 
-  res.json(tasks || { msg: 'hey' })
+  res.json(tasks || { msg: 'Wrong board ID' })
 })
 
 
@@ -19,7 +19,7 @@ router.get('/tasks/:boardId/:category/:taskId', (req, res) => {
   const tasks = boards.find(board => board.id == boardId)[category]
   const requestedTask = tasks.find(task => task.id == taskId)
 
-  res.json(requestedTask || { msg: 'hey' })
+  res.json(requestedTask || { msg: 'Wrong board or task ID' })
 })
 
 

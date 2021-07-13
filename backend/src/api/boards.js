@@ -16,7 +16,7 @@ router.get('/boards/:boardId', (req, res) => {
   const requestedBoard = boards.find(board => board.id == boardId)
 
   res.json(requestedBoard || {
-    msg: `There is no board with ID: ${boardId}`
+    msg: 'Wrong board ID'
   })
 })
 
