@@ -1,28 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+
+const URL = 'http://localhost:5000/api/user'
+
+export const getUser = createAsyncThunk('boards/getUser', async () => {
+  return fetch(URL).then(response => response.json())
+})
+
 
 const initialState = {
-  myBoards: [
-    // {
-    //   id: 2387645,
-    //   title: 'My First Board',
-    //   todo: [
-    //     {
-    //       id: 7812635,
-    //       title: "Task1",
-    //       description: "Lorem ipsum dolor sit amet consectetur"
-    //     },
-    //   ],
-    //   inProgress: [],
-    //   done: [],
-    // },
-    // {
-    //   id: 1287635,
-    //   title: 'My Second Board',
-    //   todo: [],
-    //   inProgress: [],
-    //   done: [],
-    // },
-  ],
+  myBoards: [],
   sharedBoards: [],
   activeBoardId: null
 }
@@ -83,12 +69,21 @@ const boardsSlice = createSlice({
       const board = state.myBoards.find(board => board.id === id)
       board.title = title
     },
+      
+    [getUser.pending]: () => {
+      console.log('getUser pending')
+    },
 
-    getBoards: (state, { payload }) => {
+    [getUser.rejected]: () => {
+      console.log('getUser rejected')
+    },
+
+    [getUser.fulfilled]: (state, { payload }) => {
+      console.log('getUser fulfilled')
       state.myBoards = payload
     },
 
-  },
+  }
 })
 
 const boardsReducer = boardsSlice.reducer
@@ -102,5 +97,4 @@ export const {
   addBoard,
   removeBoard,
   modifyBoard,
-  getBoards,
 } = boardsSlice.actions

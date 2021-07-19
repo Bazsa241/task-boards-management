@@ -7,8 +7,10 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+
 app.use('/api', require('./api/boards'))
 app.use('/api', require('./api/tasks'))
+app.use('/api', require('./api/user'))
 
 
 app.listen(PORT, () => {

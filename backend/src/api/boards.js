@@ -13,6 +13,7 @@ router.get('/boards', (req, res) => {
 // GET A BOARD
 router.get('/boards/:boardId', (req, res) => {
   const { boardId } = req.params
+
   const requestedBoard = boards.find(board => board.id == boardId)
 
   res.json(requestedBoard || {
@@ -32,6 +33,7 @@ router.post('/boards', (req, res) => {
 // DELETE A BOARD
 router.delete('/boards/:boardId', (req, res) => {
   const { boardId } = req.params
+  
   boards = boards.filter(board => board.id != boardId)
 
   res.json(boards)

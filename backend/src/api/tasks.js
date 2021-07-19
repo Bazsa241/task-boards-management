@@ -7,6 +7,7 @@ let boards = require('../db/boards.json')
 // GET ALL TASK FROM A CATEGORY
 router.get('/tasks/:boardId/:category/', (req, res) => {
   const { category, boardId } = req.params
+  
   const tasks = boards.find(board => board.id == boardId)[category]  
 
   res.json(tasks || { msg: 'Wrong board ID' })
@@ -16,6 +17,7 @@ router.get('/tasks/:boardId/:category/', (req, res) => {
 // GET A TASK FROM A CATEGORY
 router.get('/tasks/:boardId/:category/:taskId', (req, res) => {
   const { category, boardId, taskId } = req.params
+
   const tasks = boards.find(board => board.id == boardId)[category]
   const requestedTask = tasks.find(task => task.id == taskId)
 
@@ -28,11 +30,8 @@ router.post('/tasks/:boardId/:category/', (req, res) => {
   const { category, boardId } = req.params
   const newTask = req.body
 
-  boards.forEach(board => {
-    if(board.id == boardId) {
-      board[category].push(newTask)
-    }
-  })
+  const requestedBoard = boards.find(board => board.id == boardId)
+  requestedBoard[category].push(newTask)
 
   res.json(boards)
 })
@@ -42,11 +41,8 @@ router.post('/tasks/:boardId/:category/', (req, res) => {
 router.delete('/tasks/:boardId/:category/:taskId', (req, res) => {
   const { boardId, category, taskId } = req.params
 
-  boards.forEach(board => {
-    if(board.id == boardId) {
-      board[category] = board[category].filter(task => task.id != taskId)
-    }
-  })
+  const requestedBoard = boards.find(board => board.id == boardId)
+  requestedBoard[category] = requestedBoard[category].filter(task => task.id != taskId)
 
   res.json(boards)
 })
@@ -57,13 +53,11 @@ router.put('/tasks/:boardId/:category/:taskId', (req, res) => {
   const { boardId, category, taskId } = req.params
   const modification = req.body
 
-  boards.forEach(board => {
-    if(board.id == boardId) {
-      board[category] = board[category].map(task =>
-        task.id == taskId ? { ...task, ...modification } : task
-      )
-    }
-  })
+  const requestedBoard = boards.find(board => board.id == boardId)
+
+  requestedBoard[category] = requestedBoard[category].map(task =>
+    task.id == taskId ? { ...task, ...modification } : task
+  )
 
   res.json(boards)
 })
