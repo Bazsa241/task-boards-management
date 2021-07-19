@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
-const PORT = 5000
+const config = require('./config')
+const PORT = config.PORT
 
 
 const app = express()
@@ -11,6 +12,8 @@ app.use(express.json())
 app.use('/api', require('./api/boards'))
 app.use('/api', require('./api/tasks'))
 app.use('/api', require('./api/user'))
+
+app.use('/api/', require('./api/init'))
 
 
 app.listen(PORT, () => {

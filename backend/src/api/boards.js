@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
+const readDb = require('../utils/readDb')
+const writeDb = require('../utils/writeDb')
 
-let boards = require('../db/boards.json')
+let boards = readDb()
 
 
 // GET ALL BOARDS
@@ -15,7 +17,7 @@ router.get('/boards/:boardId', (req, res) => {
   const { boardId } = req.params
 
   const requestedBoard = boards.find(board => board.id == boardId)
-
+  
   res.json(requestedBoard || {
     msg: 'Wrong board ID'
   })
@@ -25,7 +27,8 @@ router.get('/boards/:boardId', (req, res) => {
 // CREATE A BOARD
 router.post('/boards', (req, res) => {
   boards.push(req.body)
-
+  
+  writeDb(boards)
   res.json(boards)
 })
 
@@ -36,6 +39,7 @@ router.delete('/boards/:boardId', (req, res) => {
   
   boards = boards.filter(board => board.id != boardId)
 
+  writeDb(boards)
   res.json(boards)
 })
 
@@ -49,6 +53,7 @@ router.put('/boards/:boardId', (req, res) => {
     board.id == boardId ? { ...board, ...modification } : board
   )
 
+  writeDb(boards)
   res.json(boards)
 })
 
