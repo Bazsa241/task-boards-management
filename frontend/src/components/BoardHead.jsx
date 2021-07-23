@@ -1,4 +1,4 @@
-import { removeBoard, changeBoard } from '../store/reducers/boards'
+import { removeBoard, changeBoard, setUser } from '../store/reducers/boards'
 import { useDispatch } from 'react-redux'
 
 
@@ -13,6 +13,7 @@ const BoardHead = ({title, id, setIsEdit}) => {
   const handleDelete = () => {
     dispatch(removeBoard(id))
     dispatch(changeBoard(null))
+    dispatch(setUser())
   }
 
   return (

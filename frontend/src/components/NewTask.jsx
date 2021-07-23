@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { addTask, modifyTask } from '../store/reducers/boards'
+import { addTask, modifyTask, setUser } from '../store/reducers/boards'
 import StyledSmall from '../styles/StyledSmall'
 import { useFormik } from 'formik'
 
@@ -46,6 +46,7 @@ function NewTask({ boardId, category, oldTask, setHide }) {
         ? modifyTask({ boardId, task, category })
         : addTask({ boardId, task, category })
       )
+      dispatch(setUser())
       hideModal()
     },
 

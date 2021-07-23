@@ -1,23 +1,29 @@
 import Board from './containers/Board'
 import Navbar from './components/Navbar'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { getUser } from './store/reducers/boards'
 
 
 function App() {
 
+  const dispatch = useDispatch()
   const boards = useSelector(state => state.boardsReducer.myBoards)
   const activeId = useSelector(state => state.boardsReducer.activeBoardId)
   const board = boards.find(board => board.id === activeId)
+
+  useEffect(() => {
+    dispatch(getUser())
+  }, [dispatch])
 
   return (
     <div className='App'>
       <Navbar />
       <main className='App__main'>
-        {/* <h1>Task Boards Management</h1> */}
-          {
-            activeId &&
-            <Board key={board.id} {...board} />       
-          }
+        {
+          activeId &&
+          <Board key={board.id} {...board} />       
+        }
       </main>
     </div>
   );

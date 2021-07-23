@@ -1,30 +1,39 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+
+
+const URL = 'http://localhost:5000/api/user'
+
+export const getUser = createAsyncThunk('boards/getUser', async () => {
+  const response = await fetch(URL)
+  const data = await response.json()
+  return data
+})
+
+
+export const setUser = createAsyncThunk(
+  'boards/setUser',
+  async (_, { getState }) => {
+
+  const state = getState()
+  const userData = state.boardsReducer.myBoards
+
+  const response = await fetch(URL, {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(userData)
+  })
+
+  const data = await response.json()
+  return data
+})
+
 
 const initialState = {
-  myBoards: [
-    {
-      id: 2387645,
-      title: 'My First Board',
-      todo: [
-        {
-          id: 7812635,
-          title: "Task1",
-          description: "Lorem ipsum dolor sit amet consectetur"
-        },
-      ],
-      inProgress: [],
-      done: [],
-    },
-    {
-      id: 1287635,
-      title: 'My Second Board',
-      todo: [],
-      inProgress: [],
-      done: [],
-    },
-  ],
+  myBoards: [],
   sharedBoards: [],
-  activeBoardId: 2387645
+  activeBoardId: null
 }
 
 const initialBoard = {
@@ -85,6 +94,35 @@ const boardsSlice = createSlice({
     },
 
   },
+
+  extraReducers: {
+
+    [getUser.pending]: () => {
+      console.log('getUser pending')
+    },
+
+    [getUser.rejected]: () => {
+      console.log('getUser rejected')
+    },
+
+    [getUser.fulfilled]: (state, { payload }) => {
+      console.log('getUser fulfilled')
+      state.myBoards = payload
+    },
+
+    [setUser.pending]: () => {
+      console.log('setUser pending')
+    },
+
+    [setUser.rejected]: () => {
+      console.log('setUser rejected')
+    },
+
+    [setUser.fulfilled]: () => {
+      console.log('setUser fulfilled')
+    },
+
+  }
 })
 
 const boardsReducer = boardsSlice.reducer

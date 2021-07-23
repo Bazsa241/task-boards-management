@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { removeTask } from '../store/reducers/boards'
+import { removeTask, setUser } from '../store/reducers/boards'
 import { useState } from 'react'
 import NewTask from './NewTask'
 
@@ -11,6 +11,7 @@ function Task({ task, category, boardId }) {
 
   const handleDelete = () => {
     dispatch(removeTask({category, id: task.id, boardId}))
+    dispatch(setUser())
   }
 
   const showEdit = () => {

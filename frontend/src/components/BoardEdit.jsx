@@ -1,6 +1,6 @@
 import { useFormik } from 'formik'
 import { useDispatch } from 'react-redux'
-import { modifyBoard } from '../store/reducers/boards'
+import { modifyBoard, setUser } from '../store/reducers/boards'
 
 const BoardEdit = ({title, id, setIsEdit}) => {
 
@@ -23,6 +23,7 @@ const BoardEdit = ({title, id, setIsEdit}) => {
     onSubmit: values => {
       const { id, title } = values
       dispatch(modifyBoard({ id, title }))
+      dispatch(setUser())
       setIsEdit(prevState => !prevState)
     },
 
