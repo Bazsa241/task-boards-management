@@ -3,7 +3,6 @@ const router = express.Router()
 const writeDb = require('../utils/writeDb')
 const readDb = require('../utils/readDb')
 
-// let boards = require('../db/boards.json')
 let boards = readDb()
 
 
@@ -15,9 +14,20 @@ router.get('/user', (req, res) => {
 
 // SET USER BOARDS
 router.post('/user', (req, res) => {
-  boards = req.body
-  writeDb(boards)
-  res.json(boards)
+  const { body } = req
+
+  if (Array.isArray(body)){
+
+    boards = body
+    writeDb(boards)
+    res.json(boards)
+
+  } else {
+
+    res.json({msg: "Wrong data"})
+    
+  }
+
 })
 
 

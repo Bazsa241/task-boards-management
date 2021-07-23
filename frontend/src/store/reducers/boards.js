@@ -1,9 +1,32 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
+
 const URL = 'http://localhost:5000/api/user'
 
 export const getUser = createAsyncThunk('boards/getUser', async () => {
-  return fetch(URL).then(response => response.json())
+  const response = await fetch(URL)
+  const data = await response.json()
+  return data
+})
+
+
+export const setUser = createAsyncThunk(
+  'boards/setUser',
+  async (_, { getState }) => {
+
+  const state = getState()
+  const userData = state.boardsReducer.myBoards
+
+  const response = await fetch(URL, {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(userData)
+  })
+
+  const data = await response.json()
+  return data
 })
 
 
@@ -69,7 +92,11 @@ const boardsSlice = createSlice({
       const board = state.myBoards.find(board => board.id === id)
       board.title = title
     },
-      
+
+  },
+
+  extraReducers: {
+
     [getUser.pending]: () => {
       console.log('getUser pending')
     },
@@ -81,6 +108,18 @@ const boardsSlice = createSlice({
     [getUser.fulfilled]: (state, { payload }) => {
       console.log('getUser fulfilled')
       state.myBoards = payload
+    },
+
+    [setUser.pending]: () => {
+      console.log('setUser pending')
+    },
+
+    [setUser.rejected]: () => {
+      console.log('setUser rejected')
+    },
+
+    [setUser.fulfilled]: () => {
+      console.log('setUser fulfilled')
     },
 
   }

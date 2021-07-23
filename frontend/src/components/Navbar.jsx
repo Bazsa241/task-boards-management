@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
 import BoardTab from './BoardTab'
-import { addBoard } from '../store/reducers/boards'
+import { addBoard, setUser } from '../store/reducers/boards'
 
 
 function Navbar() {
@@ -10,6 +10,7 @@ function Navbar() {
   
   const handleClick = () => {
     dispatch(addBoard())
+    dispatch(setUser())
   }
 
   return (
